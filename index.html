@@ -87,6 +87,7 @@
          }
          body.dark-mode .page-section { background:var(--card-dark); box-shadow:var(--shadow-dark); }
          .page-section h2 { color:var(--accent); margin-bottom: 1rem; }
+         body.dark-mode .page-section h2 { color:var(--accent-light); } /* Enhanced contrast for headings in dark mode */
 
 
         /* ========== QUIZ SECTION ========== */
@@ -125,7 +126,43 @@
         }
         body.dark-mode #result-box { background:var(--card-dark); border-color: var(--accent-light); }
         #result-box h2 { margin-bottom:0.5rem; color:var(--accent); font-size: 1.75rem; }
+        body.dark-mode #result-box h2 { color:var(--accent-light); } /* Enhanced contrast */
         #result-box p { margin-bottom:1rem; font-size: 1.1rem; }
+
+        /* Buttons in Result Box */
+        #result-box .result-buttons {
+             display: flex;
+             justify-content: center;
+             gap: 1rem;
+             margin-top: 1.5rem;
+             flex-wrap: wrap;
+        }
+         #result-box .result-buttons button {
+             padding: 0.75rem 1.5rem;
+             font-size: 1rem;
+             border-radius: 0.375rem;
+             cursor: pointer;
+             transition: opacity 0.3s;
+             flex: 1 1 auto; /* Allow buttons to grow/shrink */
+             max-width: 200px; /* Prevent buttons from being too wide on large screens */
+         }
+          #result-box .result-buttons #retake-quiz-button {
+              background: var(--accent-light);
+              color: var(--text-light);
+              border: none;
+          }
+           body.dark-mode #result-box .result-buttons #retake-quiz-button {
+              color: var(--text-dark);
+              background: rgba(147, 197, 253, 0.2);
+           }
+           #result-box .result-buttons #retake-quiz-button:hover {
+              background: var(--accent);
+              color: var(--nav-text);
+           }
+            #result-box .result-buttons button:hover {
+               opacity: 0.9;
+            }
+
 
         /* ========== BATTERY INDICATOR ========== */
         .battery { width:120px; height:40px; border:3px solid var(--text-light); border-radius:4px; position:relative; margin:1rem auto; /* Center */ overflow: hidden; /* Hide overflow */ }
@@ -142,10 +179,11 @@
             justify-content:center;
             align-items:center;
             font-weight: bold;
-            color: var(--bg-light); /* Default text color over fill */
-             box-shadow: none; /* Initial state */
+            /* Set text color to be highly visible on colored fills */
+            color: var(--nav-text); /* Use light text color */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Add subtle shadow for contrast */
+            box-shadow: none; /* Initial state */
         }
-         body.dark-mode .battery-level { color: var(--bg-dark); } /* Text color over fill in dark mode */
 
          @keyframes pulse-glow {
              0% { box-shadow: none; }
@@ -161,30 +199,24 @@
          .result-points li { margin-bottom: 0.5rem; }
 
         /* ========== SOCIAL SHARE ========== */
-         #social-share { display:none; text-align:center; margin-top: 1.5rem; }
-         #social-share button {
-             padding: 0.75rem 1.5rem;
-             background: var(--accent);
-             color: var(--nav-text);
-             border: none;
-             border-radius: 0.375rem;
-             font-size: 1rem;
-             cursor: pointer;
-             transition: background-color 0.3s, opacity 0.3s;
-         }
-          #social-share button:hover {
-             opacity: 0.9;
-          }
+         /* Keeping this div but the layout is handled by result-buttons */
+         /* #social-share { display:none; text-align:center; margin-top: 1.5rem; } */
+
 
         /* ========== DYNAMIC TIPS SECTION ========== */
         #tip-box { margin-top:1.5rem; text-align:center; padding: 1rem; background: rgba(37, 99, 235, 0.1); border-radius: 0.5rem; border: 1px dashed var(--accent); display: none; /* Hidden by default */ }
         #tip-box p { font-style:italic; margin-bottom:1rem; }
+        #tip-box .explanation { font-style: normal; font-size: 0.9rem; margin-top: 1rem; color: var(--text-light); /* Default text color */ text-align: left; }
+         body.dark-mode #tip-box .explanation { color: var(--text-dark); /* Dark mode text color */ }
+
         #new-tip { margin-top:0.5rem; padding:0.75rem 1.5rem; background:var(--accent); color:var(--nav-text); border:none; border-radius:0.375rem; cursor: pointer; transition: opacity 0.3s; }
          #new-tip:hover { opacity: 0.9; }
 
 
         /* ========== BLOG SECTION ========== */
         .blog-section h2 { text-align:center; margin-bottom:1.5rem; }
+        body.dark-mode .blog-section h2 { color:var(--accent-light); } /* Enhanced contrast */
+
         #blog-list { list-style:none; padding-left:0; margin-bottom: 2rem; }
         #blog-list li { margin-bottom:0.75rem; }
         #blog-list a { font-weight:600; display: block; padding: 0.5rem; background: rgba(37, 99, 235, 0.05); border-radius: 0.375rem; transition: background-color 0.3s; }
@@ -194,6 +226,7 @@
         .blog-article { background:var(--card-light); padding: 1.5rem; border-radius: 0.5rem; box-shadow: var(--shadow-light); border: 1px solid var(--border-light); transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s; }
          body.dark-mode .blog-article { background:var(--card-dark); box-shadow: var(--shadow-dark); border-color: var(--border-dark); }
         .blog-article h3 { font-size:1.75rem; margin-bottom:0.75rem; color:var(--accent); }
+        body.dark-mode .blog-article h3 { color:var(--accent-light); } /* Enhanced contrast */
          .blog-article h4 { font-size:1.2rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color:var(--accent-light); }
         .blog-article p { margin-bottom:1rem; text-align:justify; line-height:1.6; }
          .blog-article ul { list-style: disc; padding-left: 20px; margin-bottom: 1rem; }
@@ -258,6 +291,8 @@
             color: var(--accent);
             margin-bottom: 1rem;
         }
+         body.dark-mode .toggle-content h3 { color:var(--accent-light); } /* Enhanced contrast */
+
          .toggle-content p, .toggle-content ul, .toggle-content a {
              color: var(--text-light); /* Default text color */
          }
@@ -324,6 +359,11 @@
               .blog-article h3 { font-size: 1.5rem; }
              .blog-article h4 { font-size: 1.1rem; }
 
+             #result-box .result-buttons button {
+                 flex: 1 1 100%; /* Stack buttons on small screens */
+                 max-width: none;
+             }
+
 
              footer { padding: 0.75rem; }
              footer ul { gap: 0.75rem; }
@@ -357,19 +397,21 @@
             <p id="result-text"></p>
             <div class="battery"><div class="battery-level" id="battery-level"></div></div>
             <ul class="result-points" id="points"></ul>
+            <div class="result-buttons">
+                 <button onclick="shareResult()">Copy & Share Result</button>
+                 <button id="retake-quiz-button" onclick="resetQuiz()">Retake Quiz</button>
+            </div>
         </div>
-        <div class="social-share" id="social-share" style="display:none;text-align:center;">
-            <button onclick="shareResult()">Copy & Share Result</button>
-        </div>
-    </div>
+         </div>
 
     <section class="page-section" id="tips">
         <h2>Quick Social Energy Tips</h2>
          <div id="tip-box">
              <p id="tip-text"></p>
              <button id="new-tip">Get Another Tip</button>
+             <p class="explanation">Understanding and managing your social energy is key to avoiding burnout and living a balanced life, especially in today's hyper-connected world with constant digital interactions and demanding social expectations. Whether you thrive on social connection or need quiet solitude to recharge, being mindful of your energy levels is crucial. The tip above offers a quick, actionable idea you can implement right away. Click 'Get Another Tip' to discover more simple strategies to manage and replenish your energy throughout the day, tailored for navigating modern social contexts and different personality types like introverts, extroverts, and ambiverts.</p>
         </div>
-        <p style="margin-top: 1.5rem;">Understanding and managing your social energy is key to avoiding burnout and living a balanced life, especially in today's hyper-connected world with constant digital interactions and demanding social expectations. Whether you thrive on social connection or need quiet solitude to recharge, being mindful of your energy levels is crucial. The tip above offers a quick, actionable idea you can implement right away. Click 'Get Another Tip' to discover more simple strategies to manage and replenish your energy throughout the day, tailored for navigating modern social contexts and different personality types like introverts, extroverts, and ambiverts.</p>
+
     </section>
 
     <section class="page-section blog-section" id="blog">
@@ -382,7 +424,7 @@
          <h2>About This Tool</h2>
          <p>Welcome to the Social Energy Score Calculator! This unique tool is designed to help you explore and understand your personal social energy levels. The concept of social energy relates to how interacting with others impacts your energy reserves – some find it draining, while others find it invigorating. Our calculator, based on a simple quiz derived from common personality traits associated with introversion, extroversion, and ambiversion, provides an estimate of where you fall on the social energy spectrum.</p>
          <p>Understanding your social energy profile isn't about labeling yourself; it's about gaining self-awareness to live a more balanced and fulfilling life. Whether you discover you're an introvert who needs ample alone time to recharge, an extrovert who thrives in social settings, or an ambivert who enjoys a mix of both, this knowledge is a powerful tool for managing your well-being. It can help you make conscious choices about your social commitments, optimize your work environment, and improve your relationships.</p>
-         <p>Beyond the calculator, our blog section offers in-depth articles exploring the nuances of introversion, extroversion, and ambiversion, the science behind social energy, and practical tips for managing your energy in various situations, including the modern remote work environment. We believe that by understanding how you interact with the social world, you can better protect your energy, avoid burnout, and connect with others in ways that feel authentic and sustainable for you. Dive in, take the quiz, and start your journey to better social energy management today!</p>
+         <p>Beyond the calculator, our blog section offers in-depth articles exploring the nuances of introversion, extroversion, and ambiversion, the science behind social energy, and practical tips for managing your energy in various situations, including the modern remote work environment. We believe that by understanding how you interact with the social world, you can better protect your energy, avoid burnout, and connect with others in ways that feel authentic and sustainable for you. Dive in, take the quiz, and start your journey to better social energy management today.</p>
      </section>
 
      <section class="page-section" id="contact-section">
@@ -426,9 +468,8 @@
             <li>**Not a Clinical Tool:** The results generated by this tool are not clinical diagnoses. They are estimates based on your self-reported answers at a single point in time.</li>
             <li>**Variability:** Your social energy levels can fluctuate based on various factors such as sleep, stress, environment, and the specific social situation. The quiz result reflects a general tendency, not a fixed state.</li>
             <li>**No Guarantees:** SocialEnergy.com makes no guarantees about the accuracy, completeness, or applicability of the quiz results or the information provided on this site for your individual circumstances.</li>
+            <li>**No Liability:** By using this tool, you agree that SocialEnergy.com and its creators are not liable for any decisions you make or actions you take based on the information or results provided by this calculator or website.</li>
         </ul>
-        <p>Reliance on any information provided by this tool or website is solely at your own risk. If you have concerns about your personality, social interactions, energy levels, or mental health, please consult a qualified healthcare professional, psychologist, or therapist.</p>
-        <p>By using this tool, you agree that SocialEnergy.com and its creators are not liable for any decisions you make or actions you take based on the information or results provided by this calculator or website.</p>
     </div>
 
     <div id="sitemap-content" class="toggle-content">
@@ -474,6 +515,7 @@
 
         // Apply saved theme on load
         document.addEventListener('DOMContentLoaded', () => {
+             console.log('DOM fully loaded.'); // Debugging
              const savedTheme = localStorage.getItem('theme');
              if (savedTheme === 'dark') {
                  document.body.classList.add('dark-mode');
@@ -485,16 +527,35 @@
              // Set up initial battery color based on default 0% width
              updateBatteryLevelColor();
 
-             // Handle initial page load based on hash
-              handleHashChange();
+            // Initialize Blog List (Quiz is loaded by handleHashChange)
+            buildBlogList();
 
-              // Initially hide the tip box until the quiz is complete
+            // Add event listener for hash changes (needed for back/forward browser buttons)
+             window.addEventListener('hashchange', handleHashChange);
+
+             // Handle initial page load based on hash
+              handleHashChange(); // This will now call showPageSection('quiz') and load the quiz
+
+
+             // Ensure the dynamic tip box is hidden initially (will be shown by showResult or showPageSection('tips'))
               const tipBox = document.getElementById('tip-box');
               if (tipBox) {
                   tipBox.style.display = 'none';
               } else {
                    console.error("Tip box element not found on DOMContentLoaded.");
               }
+
+              // Attach tip button listener
+              const newTipButton = document.getElementById('new-tip');
+              if (newTipButton) {
+                  newTipButton.addEventListener('click', newTip);
+                  console.log('New tip button listener attached.');
+              } else {
+                   console.error("New tip button not found on DOMContentLoaded.");
+              }
+
+             // Load an initial tip on page load (but it remains hidden with the tipBox until quiz is done or tips section is visited)
+             newTip(); // Call once to load the first tip
         });
 
          // --- Section Visibility Toggling ---
@@ -515,34 +576,96 @@
                  });
 
                  targetElement.style.display = 'block';
-
-                 // Update the URL hash without triggering hashchange event manually
-                 history.pushState(null, null, `#${id}`);
-
-                 // Scroll to the top of the newly visible section
-                 scrollToSection(id);
-
                  console.log('Showing section:', id);
 
-                 // Special handling for quiz result box visibility when showing quiz section
-                 if (id === 'quiz') {
-                     const resultBox = document.getElementById('result-box');
-                     // If quiz hasn't finished, hide the result box when revisiting quiz section
-                     if (currentQuestionIndex < questions.length && resultBox) {
-                          resultBox.style.display = 'none';
-                     }
-                     // If quiz finished, ensure result box and tip box are visible when revisiting quiz
-                     if (currentQuestionIndex >= questions.length && resultBox && document.getElementById('tip-box')) {
-                          resultBox.style.display = 'block';
-                          document.getElementById('tip-box').style.display = 'block';
-                     }
+                 // Update the URL hash without triggering hashchange event manually
+                 // Only push state if it's a main section hash and not an article hash
+                 if (!window.location.hash.startsWith('#article-') && window.location.hash !== '#' + id) {
+                     history.pushState(null, null, `#${id}`);
                  }
 
-                 // Special handling for blog section to clear article view when just showing blog list
+
+                 // Scroll to the top of the newly visible section
+                 // Use a small timeout to ensure the display block has taken effect before scrolling
+                 setTimeout(() => {
+                    scrollToSection(id);
+                 }, 50);
+
+
+                 // Special handling for blog section: show the list, hide article view
                  if (id === 'blog') {
-                     const articleContainer = document.getElementById('article-container');
-                     if (articleContainer) {
-                         articleContainer.innerHTML = ''; // Clear any previously displayed article
+                      const blogList = document.getElementById('blog-list');
+                      const articleContainer = document.getElementById('article-container');
+                     if (blogList) blogList.style.display = 'block'; // Show the list
+                     if (articleContainer) articleContainer.innerHTML = ''; // Clear any displayed article
+                      // Build blog list here in case it wasn't built or needs rebuilding
+                      // buildBlogList(); // Building on DOMContentLoaded is sufficient unless articles change
+                     console.log('Blog section shown: showing list, clearing article.');
+                 }
+
+                 // Special handling for tips section: show the tip box
+                 if (id === 'tips') {
+                      const tipBox = document.getElementById('tip-box');
+                      if (tipBox) {
+                          tipBox.style.display = 'block'; // Ensure the tip box is visible
+                           newTip(); // Load a tip when navigating to the tips section
+                          console.log('Tips section shown: showing tip box.');
+                      } else {
+                           console.error("Tip box element not found when showing tips section.");
+                      }
+                 } else {
+                      // If NOT the tips section, hide the tip box
+                       const tipBox = document.getElementById('tip-box');
+                       if(tipBox) tipBox.style.display = 'none';
+                 }
+
+
+                 // Special handling for quiz section: show quiz elements, manage result box visibility
+                 if (id === 'quiz') {
+                     const questionDiv = document.getElementById('question');
+                     const optionsDiv = document.getElementById('options');
+                     const resultBox = document.getElementById('result-box');
+                     const tipBox = document.getElementById('tip-box'); // Need reference here too
+
+                     // Always ensure question/options are visible when showing quiz initially or retaking
+                     if(questionDiv) questionDiv.style.display = 'block';
+                     if(optionsDiv) optionsDiv.style.display = 'block';
+
+
+                     // If quiz is not finished, hide the result and tip boxes when revisiting quiz section
+                     // Also applies if the user navigates *away* from the quiz before finishing and comes back
+                     if (currentQuestionIndex < questions.length) {
+                          console.log('Quiz section shown, quiz not finished. Hiding result/tip boxes.');
+                          if(resultBox) resultBox.style.display = 'none';
+                          if(tipBox) tipBox.style.display = 'none'; // Hide tip box if quiz not finished
+
+                          // Ensure quiz buttons are enabled and reset appearance if not finished
+                           const buttons = optionsDiv.querySelectorAll('button');
+                           buttons.forEach(button => {
+                                button.disabled = false;
+                                button.style.opacity = 1;
+                                 button.style.backgroundColor = ''; // Reset background
+                                 button.style.color = ''; // Reset color
+                           });
+                           // If quiz is not started (currentQuestionIndex is 0), call loadQuestion explicitly
+                           if(currentQuestionIndex === 0 && questionDiv.innerText === 'Loading...') {
+                                // Initial load handled by resetQuiz in handleHashChange
+                                console.log('Quiz section: Initial load state detected, awaiting resetQuiz from handleHashChange.');
+                           } else if (currentQuestionIndex > 0){
+                                // If user navigated away mid-quiz and came back, reload the current question
+                                 console.log('Quiz section: User returned mid-quiz. Reloading current question.');
+                                 loadQuestion();
+                           }
+
+
+                     } else {
+                         // If quiz is finished, ensure result and tip boxes are visible
+                         console.log('Quiz section shown, quiz finished. Showing result/tip boxes.');
+                         if(resultBox) resultBox.style.display = 'block';
+                         if(tipBox) tipBox.style.display = 'block'; // Show tip box if quiz finished
+                         // Hide question/options if quiz is finished
+                          if(questionDiv) questionDiv.style.display = 'none';
+                          if(optionsDiv) optionsDiv.style.display = 'none';
                      }
                  }
 
@@ -552,26 +675,34 @@
              }
          }
 
-         // Handle page load and hash changes to show the correct section
+         // Handle page load and hash changes to show the correct section or article
          function handleHashChange() {
              const hash = window.location.hash.substring(1); // Get hash without '#'
-             console.log('Hash changed/loaded:', hash); // Debugging
+             console.log('Handling hash:', hash); // Debugging
 
              if (hash.startsWith('article-')) {
                  const index = parseInt(hash.substring('article-'.length));
                  // Show blog section first, then show the specific article
-                 showPageSection('blog');
-                 // Need a small delay to ensure blog section is visible before trying to show article
-                 setTimeout(() => showArticle(index), 50);
+                 showPageSection('blog'); // showPageSection('blog') will show the list and clear article container
+                 if (!isNaN(index) && index >= 0 && index < articles.length) {
+                      // Small delay to ensure blog section is visible and DOM updated before trying to show article
+                      setTimeout(() => showArticle(index), 50);
+                 } else {
+                      console.error('Invalid article index in hash:', hash);
+                      // Fallback to showing the blog list if article hash is invalid
+                      showPageSection('blog');
+                 }
 
              } else if (hash && document.getElementById(hash)) {
                  // If hash matches a main section ID, show that section
                  showPageSection(hash);
              } else {
                  // If no hash or invalid hash, default to showing the quiz section
-                 showPageSection('quiz');
+                 // When defaulting to quiz on initial load or invalid hash, reset and load the quiz
+                 resetQuiz(); // This also calls loadQuestion() and showPageSection('quiz') internally
              }
          }
+         // --- End Section Visibility Toggling ---
 
 
         // Smooth Scrolling (remains the same, used by showPageSection)
@@ -594,9 +725,9 @@
             [ // Set 1 (Introvert leaning)
                 { q: "You’re at a party. What are you doing?", opts: ["Chatting with close friends", "Talking to a few small groups", "Working the room, talking to everyone"], s: [2, 3, 5] },
                 { q: "Weekend plan?", opts: ["Reading a book at home", "Small meetup with friends", "Going to a large event or concert"], s: [1, 3, 5] },
-                { q: "Energy after socializing for hours?", opts: ["Totally drained, need quiet alone time", "A bit tired, but enjoyed it", "Fully energized and ready for more"], s: [1, 3, 5] },
+                { q: "Energy after socializing for hours?", opts: ["Totally drained, need quiet alone time", "A bit tired", "Fully energized"], s: [1, 3, 5] },
                 { q: "Preferred work setting?", opts: ["Quiet home office", "Collaborative team space", "Busy, open-plan office"], s: [1, 3, 5] },
-                { q: "Ideal vacation?", opts: ["Secluded cabin retreat", "City sightseeing with a friend or partner", "Group tour or resort with lots of activities"], s: [1, 2, 5] }
+                { q: "Ideal vacation?", opts: ["Secluded cabin retreat", "City sightseeing in small group", "Music festival with friends"], s: [1, 2, 5] } // Corrected score here
             ],
              [ // Set 2 (Ambivert leaning)
                  { q: "New social situation?", opts: ["Prefer to observe before joining in", "Comfortable joining in small groups", "Jump right into the biggest group"], s: [2, 3, 5] },
@@ -614,8 +745,8 @@
              ]
             // Add more sets if desired
         ];
-        // Select a random set of questions
-        const questions = questionSets[Math.floor(Math.random() * questionSets.length)];
+        // Declare 'questions' variable without initial assignment
+        let questions;
 
         let currentQuestionIndex = 0;
         let userScore = 0;
@@ -624,29 +755,49 @@
         const optionsDiv = document.getElementById('options');
 
         function loadQuestion() {
+             console.log('Attempting to load question:', currentQuestionIndex + 1); // Debugging
+             // Ensure questions array is populated before loading a question
+             if (!questions || questions.length === 0) {
+                 console.error("Questions array is not populated. Resetting quiz to select a set.");
+                 resetQuiz(); // Resetting will select a set and call loadQuestion again
+                 return; // Exit this call
+             }
+
             if (currentQuestionIndex >= questions.length) {
+                console.log('Quiz finished, showing result.'); // Debugging
                 return showResult();
             }
             const q = questions[currentQuestionIndex];
-            questionDiv.innerText = q.q;
-            optionsDiv.innerHTML = ''; // Clear previous options
-            q.opts.forEach((optionText, i) => {
-                const button = document.createElement('button');
-                button.innerText = optionText;
-                // Store the score value in a data attribute
-                button.dataset.score = q.s[i];
-                button.addEventListener('click', handleOptionClick); // Use an event listener
-                optionsDiv.appendChild(button);
-            });
-             console.log('Loaded question:', currentQuestionIndex + 1); // Debugging
+            if(questionDiv) questionDiv.innerText = q.q;
+            if(optionsDiv) {
+                 optionsDiv.innerHTML = ''; // Clear previous options
+                q.opts.forEach((optionText, i) => {
+                    const button = document.createElement('button');
+                    button.innerText = optionText;
+                    // Store the score value in a data attribute
+                    button.dataset.score = q.s[i];
+                    button.addEventListener('click', handleOptionClick); // Use an event listener
+                    optionsDiv.appendChild(button);
+                });
+                console.log('Loaded question:', currentQuestionIndex + 1, 'Options created.'); // Debugging
+            } else {
+                 console.error("Question or options element not found.");
+                 // Attempt to show quiz section again if elements are missing, might help if DOM wasn't ready?
+                  setTimeout(() => showPageSection('quiz'), 100);
+            }
+
              // Ensure result box is hidden when loading a new question
              if(resultBox) resultBox.style.display = 'none';
+             // Ensure tip box is hidden when loading a new question (in case user restarts quiz)
+              const tipBox = document.getElementById('tip-box');
+              if(tipBox) tipBox.style.display = 'none';
         }
 
         function handleOptionClick(event) {
             const selectedButton = event.target;
             // Only process the click if the button is not already disabled
             if (selectedButton.disabled) {
+                 console.log('Button already disabled, ignoring click.'); // Debugging
                 return;
             }
 
@@ -699,20 +850,16 @@
                  levelDiv.style.backgroundColor = lowColor;
              }
 
-             // Adjust text color inside the bar for contrast
-             // Using a simple check based on theme class
-              if (document.body.classList.contains('dark-mode')) {
-                    levelDiv.style.color = getComputedStyle(document.documentElement).getPropertyValue('--bg-dark'); // Dark text on dark fill
-               } else {
-                   levelDiv.style.color = getComputedStyle(document.documentElement).getPropertyValue('--bg-light'); // Light text on light fill
-               }
+             // Text color is handled by CSS rule .battery-level { color: var(--nav-text); }
+             // No need to adjust color here unless based on background luminance
+             // Keeping it simple with fixed light text color + shadow for visibility
 
         }
 
 
         function showResult() {
-            questionDiv.style.display = 'none'; // Hide question
-            optionsDiv.style.display = 'none'; // Hide options
+            if(questionDiv) questionDiv.style.display = 'none'; // Hide question
+            if(optionsDiv) optionsDiv.style.display = 'none'; // Hide options
 
             const maxScore = questions.length * 5; // Maximum possible score (5 points per question)
             const percentage = Math.round((userScore / maxScore) * 100);
@@ -763,18 +910,79 @@
              }
 
 
-            resultBox.style.display = 'block';
-            document.getElementById('social-share').style.display = 'block';
-             document.getElementById('tip-box').style.display = 'block'; // Ensure tip box is visible after quiz
+            if(resultBox) resultBox.style.display = 'block';
+            // Social share is now part of result-buttons container in terms of layout flow,
+            // but kept separate div for potential future distinct styling (the div is hidden by default,
+            // but the share button is inside result-buttons which is shown)
+            // const socialShareDiv = document.getElementById('social-share');
+            // if(socialShareDiv) socialShareDiv.style.display = 'block';
+
+             const tipBox = document.getElementById('tip-box');
+             if(tipBox) tipBox.style.display = 'block'; // Ensure tip box is visible after quiz
 
 
             console.log('Quiz finished. Score:', userScore, 'Percentage:', percentage, 'Type:', type); // Debugging
             // Scroll to result
              setTimeout(() => {
-                resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if(resultBox) resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
 
         }
+
+        // --- Reset Quiz Functionality ---
+        function resetQuiz() {
+             console.log('Resetting Quiz...'); // Debugging
+             currentQuestionIndex = 0;
+             userScore = 0;
+
+             // --- Select a *new* random question set ---
+             // Store the index of the current set to avoid immediately repeating it
+             const currentSet = questions; // Store current set object
+             let newSet;
+             // Loop until a different set is selected, but prevent infinite loop if only one set exists
+             if (questionSets.length > 1) {
+                 do {
+                     newSet = questionSets[Math.floor(Math.random() * questionSets.length)];
+                 } while (newSet === currentSet);
+             } else {
+                 // If only one set, just use that one again
+                 newSet = questionSets[0];
+             }
+             questions = newSet;
+             console.log('Selected new question set (first question of new set):', questions[0].q);
+             // --- End Select new set ---
+
+
+             // Hide result box and social share button
+             if(resultBox) resultBox.style.display = 'none';
+             // if(socialShareDiv) socialShareDiv.style.display = 'none'; // No longer needed as it's part of resultBox layout
+             const tipBox = document.getElementById('tip-box');
+             if(tipBox) tipBox.style.display = 'none'; // Hide tips after retake
+
+
+             // Show question and options area
+             if(questionDiv) {
+                 questionDiv.innerText = 'Loading...'; // Reset question text placeholder
+                 questionDiv.style.display = 'block';
+             }
+             if(optionsDiv) {
+                  optionsDiv.innerHTML = ''; // Clear old options
+                 optionsDiv.style.display = 'block';
+             }
+
+
+             // Load the first question of the new set
+             loadQuestion();
+
+             // Scroll back to the top of the quiz section
+              setTimeout(() => {
+                 showPageSection('quiz'); // Use showPageSection to ensure the quiz section is visible and scrolled
+             }, 50); // Small delay
+
+             console.log('Quiz reset with new questions. Loading first question.'); // Debugging
+        }
+        // --- End Reset Quiz Functionality ---
+
 
         function shareResult() {
              const resultTitle = document.getElementById('result-title').innerText;
@@ -822,20 +1030,17 @@
         const tipBox = document.getElementById('tip-box');
 
         function newTip() {
+             console.log('Running newTip function.'); // Debugging
              if (tipTextElement && tips.length > 0) {
                  const randomTip = tips[Math.floor(Math.random() * tips.length)];
                  tipTextElement.innerText = randomTip;
-                 console.log('New tip generated:', randomTip); // Debugging
+                 console.log('New tip generated and displayed:', randomTip); // Debugging
              } else {
-                  console.error("Tip text element not found or tips array is empty.");
+                  console.error("Tip text element not found or tips array is empty when trying to generate new tip.");
                   if(tipTextElement) tipTextElement.innerText = "Could not load tip.";
              }
         }
-         if(newTipButton) {
-             newTipButton.addEventListener('click', newTip);
-         } else {
-             console.error("New tip button not found.");
-         }
+        // Event listener is attached in DOMContentLoaded
 
 
         // Blog List & Articles (full content)
@@ -926,7 +1131,7 @@
             { title: "The Science Behind Social Energy: Dopamine and the Brain", content: `<div class="blog-article">
                 <h3>The Science Behind Social Energy: Dopamine, Brain Differences, and Personality</h3>
                 <p>Have you ever wondered why some people light up in a crowded room while others feel an immediate urge to find the nearest exit? It's not just about preference; there's fascinating <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(3), 50); return false;">science behind social energy</a>. Research into the human brain is shedding light on the biological basis of introversion and extroversion, particularly focusing on how individuals respond to stimuli, including social interaction.</p>
-                <p>One key player in this neurobiological difference is **dopamine**, a neurotransmitter associated with reward, motivation, and seeking out external stimuli. Studies suggest that introverts and extroverts may have different dopamine systems. It's not that one group has more dopamine than the other, but rather they might differ in how their brains process and respond to dopamine activity, particularly in pathways related to reward and external engagement.</p>
+                <p>One key player in this neurobiological difference is **dopamine**, a neurotransmitter associated with reward, motivation and pleasure-seeking. Studies suggest that introverts and extroverts may have different dopamine systems. It's not that one group has more dopamine than the other, but rather they might differ in how their brains process and respond to dopamine activity, particularly in pathways related to reward and external engagement.</p>
                 <h4>Dopamine Pathways and Stimulation:</h4>
                 <p>Extroverts may have a more active dopamine pathway that responds strongly to external rewards, including social stimulation. This could mean they feel a greater sense of pleasure or energy boost from interacting with others. Social situations provide a rich source of external stimuli – new faces, conversations, activities – which can trigger dopamine release and make them feel energized and motivated.</p>
                 <p>Introverts, on the other hand, may have a different sensitivity to dopamine or other neurochemical processes. Their brains might process stimuli, both social and non-social, more intensely. This higher sensitivity could mean that excessive external stimulation, like a bustling party, can quickly become overstimulating and draining. They might feel more comfortable and recharged in quieter environments where stimulation is lower, allowing their brains to process internally without being overwhelmed.</p>
@@ -942,7 +1147,7 @@
             </div>` },
             { title: "Managing Energy in a Remote Work World", content: `<div class="blog-article">
                 <h3>Managing Energy in a Remote Work World: Navigating Social Needs When Working From Home</h3>
-                <p>The shift towards <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(4), 50); return false;">remote work</a> has fundamentally changed how many of us experience social interaction in our daily professional lives. For some, working from home is a welcome relief from constant office chatter, offering focus and reduced social demands. For others, it can feel isolating, lacking the spontaneous connection that fuels their energy. Understanding your <a href="#quiz" onclick="showPageSection('quiz')">social energy score</a> (whether you lean introvert, extrovert, or <a href="#blog" onclick="showPageSection('blog')">ambivert</a>) is crucial for effectively <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(4), 50); return false;">managing energy in a remote work world</a>.</p>
+                <p>The shift towards <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(4), 50), 50; return false;">remote work</a> has fundamentally changed how many of us experience social interaction in our daily professional lives. For some, working from home is a welcome relief from constant office chatter, offering focus and reduced social demands. For others, it can feel isolating, lacking the spontaneous connection that fuels their energy. Understanding your <a href="#quiz" onclick="showPageSection('quiz')">social energy score</a> (whether you lean introvert, extrovert, or <a href="#blog" onclick="showPageSection('blog')">ambivert</a>) is crucial for effectively <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(4), 50), 50; return false;">managing energy in a remote work world</a>.</p>
                 <h4>Challenges and Opportunities of Remote Work Socially:</h4>
                 <ul>
                     <li>**Reduced Spontaneous Interaction:** No more water cooler chats or impromptu desk visits. Socializing becomes more intentional.</li>
@@ -952,9 +1157,9 @@
                     <li>**Increased Isolation (for some):** Extroverts might miss the constant buzz and energy of a shared workspace.</li>
                     <li>**More Control (for others):** Introverts might appreciate the ability to minimize interruptions and control their social exposure.</li>
                 </ul>
-                <p>Regardless of where you fall on the spectrum, proactive strategies are needed to ensure your <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(4), 50); return false;">remote work social energy</a> remains healthy. It's about intentionally designing your workday and after-work life to meet your specific social needs.</p>
+                <p>Regardless of where you fall on the spectrum, proactive strategies are needed to ensure your <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(4), 50), 50; return false;">remote work social energy</a> remains healthy. It's about intentionally designing your workday and after-work life to meet your specific social needs.</p>
                 <h4>Tips for Managing Social Energy While Working From Home:</h4>
-                <p>Here are some practical tips tailored to the <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(4), 50); return false;">WFH social</a> landscape:</p>
+                <p>Here are some practical tips tailored to the <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(4), 50), 50; return false;">WFH social</a> landscape:</p>
                 <ul>
                     <li>**Schedule Virtual Social Breaks:** For extroverts and ambiverts, propose short, non-work-related virtual coffee breaks with colleagues.</li>
                     <li>**Set Boundaries Around Video Calls:** If possible, block out focus time between calls. Use chat or email for quick questions instead of immediate calls. Consider if video is necessary for every meeting.</li>
@@ -965,7 +1170,7 @@
                     <li>**Find a Work Buddy:** Connect with one or two colleagues for regular casual check-ins. This can replicate some of the positive social aspects of an office without being overwhelming.</li>
                     <li>**Step Outside:** Even a short walk around the block can provide a change of scenery and brief, low-stakes social interactions (seeing neighbors, people at shops) which can help balance energy.</li>
                 </ul>
-                <p>Remote work offers flexibility, but it requires conscious effort to manage your social energy. By understanding your natural tendencies and implementing strategies to either seek out connection or protect your solitude, you can create a <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(4), 50); return false;">remote team social connection</a> that works for you and maintain your overall well-being. Your <a href="#tips" onclick="showPageSection('tips')">energy management</a> is key to thriving when <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(4), 50); return false;">working from home</a>.</p>
+                <p>Remote work offers flexibility, but it requires conscious effort to manage your social energy. By understanding your natural tendencies and implementing strategies to either seek out connection or protect your solitude, you can create a <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(4), 50), 50; return false;">remote team social connection</a> that works for you and maintain your overall well-being. Your <a href="#tips" onclick="showPageSection('tips')">energy management</a> is key to thriving when <a href="#blog" onclick="showPageSection('blog'); setTimeout(()=>showArticle(4), 50), 50; return false;">working from home</a>.</p>
                  <p>For more insights on personality and energy, visit our main <a href="#blog" onclick="showPageSection('blog')">blog section</a>.</p>
             </div>` }
             // If you want 5 more articles to reach 10, you would add them here following the same structure.
@@ -1002,8 +1207,9 @@
                   console.error("Article container not found or invalid article index:", i);
                   return;
              }
-             // Clear blog list when showing a specific article
-             if(blogListElement) blogListElement.style.display = 'none';
+             // Hide blog list when showing a specific article
+             const blogList = document.getElementById('blog-list');
+             if(blogList) blogList.style.display = 'none';
 
             articleContainerElement.innerHTML = articles[i].content;
             // Use history.pushState to change the URL without a full page reload, referencing the article index
@@ -1038,8 +1244,13 @@
                      contentDiv.style.display = 'block';
                      // Show overlay
                      overlay.style.display = 'block';
-                     // Add event listener to overlay to hide toggles on click
-                      overlay.addEventListener('click', hideAllToggles);
+                     // Add event listener to overlay to hide toggles on click (only when visible)
+                     // Ensure listener is added only once
+                     if (!overlay.dataset.listenerAttached) {
+                         overlay.addEventListener('click', hideAllToggles);
+                         overlay.dataset.listenerAttached = 'true'; // Mark listener as attached
+                     }
+
                  } else {
                      // Hide the selected one
                      contentDiv.style.display = 'none';
@@ -1049,7 +1260,10 @@
                          // Hide overlay only if no content is visible
                          overlay.style.display = 'none';
                          // Remove overlay click listener when hidden
-                          overlay.removeEventListener('click', hideAllToggles);
+                          if (overlay.dataset.listenerAttached) {
+                             overlay.removeEventListener('click', hideAllToggles);
+                             delete overlay.dataset.listenerAttached; // Remove the marker
+                          }
                       }
                  }
              } catch (error) {
@@ -1085,7 +1299,10 @@
                   if (!anyVisibleAfterHiding) {
                       overlay.style.display = 'none';
                        // Remove overlay click listener when hidden
-                       overlay.removeEventListener('click', hideAllToggles);
+                       if (overlay.dataset.listenerAttached) {
+                          overlay.removeEventListener('click', hideAllToggles);
+                          delete overlay.dataset.listenerAttached;
+                       }
                   }
               } catch (error) {
                   console.error('Error hiding all toggles:', error);
@@ -1098,35 +1315,55 @@
                  hideAllToggles();
              }
          });
+         // --- End Toggleable Content (Modal Pattern) ---
 
 
         // Initialize Quiz and Blog, handle hash
+        // Moved DOMContentLoaded listener here
         document.addEventListener('DOMContentLoaded', () => {
              console.log('DOM fully loaded.'); // Debugging
-
-            // Add event listener for hash changes
-             window.addEventListener('hashchange', handleHashChange);
-
-            // Initialize Quiz and Blog List
-            loadQuestion();
-            buildBlogList();
-
-             // Handle initial page load based on hash
-              handleHashChange();
-
-              // Set up initial battery color based on default 0% width
+             const savedTheme = localStorage.getItem('theme');
+             if (savedTheme === 'dark') {
+                 document.body.classList.add('dark-mode');
+                  document.getElementById('theme-toggle').textContent = 'Light Mode';
+             } else {
+                 document.body.classList.remove('dark-mode');
+                  document.getElementById('theme-toggle').textContent = 'Dark Mode';
+             }
+             // Set up initial battery color based on default 0% width
              updateBatteryLevelColor();
 
-             // Hide the tip box initially
+            // Initialize Blog List (Quiz is loaded by handleHashChange)
+            buildBlogList();
+
+            // Add event listener for hash changes (needed for back/forward browser buttons)
+             window.addEventListener('hashchange', handleHashChange);
+
+             // Handle initial page load based on hash
+              handleHashChange(); // This will now call showPageSection('quiz') and reset/load the quiz
+
+
+             // Ensure the dynamic tip box is hidden initially (will be shown by showResult or showPageSection('tips'))
               const tipBox = document.getElementById('tip-box');
               if (tipBox) {
                   tipBox.style.display = 'none';
               } else {
                    console.error("Tip box element not found on DOMContentLoaded.");
               }
+
+              // Attach tip button listener
+              const newTipButton = document.getElementById('new-tip');
+              if (newTipButton) {
+                  newTipButton.addEventListener('click', newTip);
+                  console.log('New tip button listener attached.');
+              } else {
+                   console.error("New tip button not found on DOMContentLoaded.");
+              }
+
+             // Load an initial tip on page load (but it remains hidden with the tipBox until quiz is done or tips section is visited)
+             newTip(); // Call once to load the first tip
         });
 
-
-    </script>
+</script>
 </body>
 </html>
