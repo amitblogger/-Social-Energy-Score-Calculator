@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Energy Calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Social Energy Calculator</h1>
+  <button id="theme-toggle">Toggle Dark Mode</button>
+  <nav>
+    <a href="#" onclick="showSection('quiz')">Quiz</a>
+    <a href="#" onclick="showSection('tips')">Tips</a>
+    <a href="#" onclick="showSection('blog')">Blog</a>
+    <a href="#" onclick="showSection('about')">About</a>
+    <a href="#" onclick="showSection('contact')">Contact</a>
+  </nav>
+</header>
+
+<section id="quiz">
+  <h2>Quiz</h2>
+  <div id="quiz-container"></div>
+  <div id="quiz-result" style="display:none;">
+    <h3 id="result-title"></h3>
+    <p id="result-description"></p>
+    <div class="battery"><div id="battery-level"></div></div>
+    <button onclick="restartQuiz()">Retake Quiz</button>
+    <button onclick="copyResult()">Copy Result</button>
+  </div>
+</section>
+
+<section id="tips">
+  <h2>Tips</h2>
+  <div id="tips-container"></div>
+  <button onclick="newTip()">New Tip</button>
+</section>
+
+<section id="blog">
+  <h2>Blog</h2>
+  <div id="blog-list"></div>
+  <div id="blog-article"></div>
+</section>
+
+<section id="about">
+  <h2>About</h2>
+  <p>Social Energy Calculator helps you understand your personality traits and energy levels to improve your social well-being.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email us at <a href="mailto:support@example.com">support@example.com</a></p>
+</section>
+
+<footer>
+  <ul>
+    <li><a onclick="togglePopup('privacy')">Privacy</a></li>
+    <li><a onclick="togglePopup('disclaimer')">Disclaimer</a></li>
+    <li><a onclick="togglePopup('sitemap')">Sitemap</a></li>
+  </ul>
+</footer>
+
+<div id="privacy" class="popup-content">
+  <h3>Privacy Policy</h3>
+  <p>No data is collected. Everything is client-side.</p>
+  <button onclick="togglePopup('privacy')">Close</button>
+</div>
+
+<div id="disclaimer" class="popup-content">
+  <h3>Disclaimer</h3>
+  <p>This quiz is for informational purposes only and not a clinical assessment.</p>
+  <button onclick="togglePopup('disclaimer')">Close</button>
+</div>
+
+<div id="sitemap" class="popup-content">
+  <h3>Sitemap</h3>
+  <ul>
+    <li><a onclick="navigateTo('quiz')">Quiz</a></li>
+    <li><a onclick="navigateTo('tips')">Tips</a></li>
+    <li><a onclick="navigateTo('blog')">Blog</a></li>
+    <li><a onclick="navigateTo('about')">About</a></li>
+    <li><a onclick="navigateTo('contact')">Contact</a></li>
+  </ul>
+  <button onclick="togglePopup('sitemap')">Close</button>
+</div>
+
+<div id="overlay"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
